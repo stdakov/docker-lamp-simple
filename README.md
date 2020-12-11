@@ -68,6 +68,10 @@ docker-compose exec app php artisan key:generate
 ```
 
 ```shell
+docker-compose exec db /usr/bin/mysqldump -u root --password=password app > backup.sql
+```
+
+```shell
 docker-compose logs nginx
 ```
 
