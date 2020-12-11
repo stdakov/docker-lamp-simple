@@ -15,7 +15,6 @@ services:
       - ./:/var/www
     networks:
       - appnet
-
   db:
     image: mysql:5.7
     container_name: app-db
@@ -29,15 +28,35 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
     networks:
       - appnet
-
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "phpmyadmin"
+    restart: "on-failure"
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8080:80"
+    networks:
+      - appnet
+    volumes:
+      - /sessions
+      - ./docker-compose/phpmyadmin/phpmyadmin-misc.ini:/usr/local/etc/php/conf.d/phpmyadmin-misc.ini
   nginx:
     image: nginx:alpine
     container_name: app-nginx
     restart: unless-stopped
     ports:
-      - 8000:80
+      - 80:80
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
