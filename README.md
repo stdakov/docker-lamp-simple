@@ -7,6 +7,7 @@ Containers:
 - PHP 7.4
 - nginx
 - MySQL 5.7
+- phpmyadmin
 
 ## Installation
 
@@ -19,7 +20,14 @@ docker-compose up -d
 
 Wait some minutes and the containers are ready to go.
 
-To confirm that everything is running fine go to `http://localhost:8000`.
+To confirm that everything is running fine go to `http://localhost`.
+
+#### phpmyadmin
+`http://localhost:8080`
+
+* username: app_user
+* password: password
+
 
 #### Update container configuration
 
