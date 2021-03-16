@@ -4,7 +4,7 @@ A ready to use docker-compose configuration with php, mysql, nginx.
 
 Containers:
 
-- PHP 7.4
+- PHP 8.0
 - nginx
 - MySQL 5.7
 - phpmyadmin
@@ -23,11 +23,11 @@ Wait some minutes and the containers are ready to go.
 To confirm that everything is running fine go to `http://localhost`.
 
 #### phpmyadmin
+
 `http://localhost:8080`
 
-* username: app_user
-* password: password
-
+- username: app_user
+- password: password
 
 #### Update container configuration
 

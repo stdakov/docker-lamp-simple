@@ -11,8 +11,13 @@ services:
     container_name: app-php
     restart: unless-stopped
     working_dir: /var/www/
+    expose:
+      - 9003
     volumes:
       - ./:/var/www
+      - ./docker-compose/php/php.ini:/usr/local/etc/php/conf.d/custom-php.ini
+      - ./docker-compose/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker-compose/php/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
     networks:
       - appnet
   db:
